@@ -1,0 +1,90 @@
+/* Font-container */
+
+.form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.form-container h2 {
+    color: #2e7d32;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-container label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #455a64;
+    font-weight: 500;
+}
+
+.form-container input {
+    padding: 12px 15px;
+    border: 1px solid #c8e6c9;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3ms ease;
+}
+
+.form-container input:focus {
+    background-color: #2e7d32;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container .btn {
+    background-color: #2e7d32;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container .btn:hover {
+    background-color: #1b5e20;
+}
+
+.redirect {
+    text-align: center;
+    color: #455a64;
+    margin-top: 15px;
+}
+
+.redirect a {
+    color: #2e7d32;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.redirect a:hover {
+    text-decoration: underline;
+}
+
+.form-container h2:before {
+    content: "👤";
+    margin-right: 10px;
+}
