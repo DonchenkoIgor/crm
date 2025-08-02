@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'CRM')</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script defer src="{{asset('js/app.js')}}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>

@@ -4,6 +4,18 @@
     @section('content')
         <div class="form-container">
             <h2>Register</h2>
+
+            @if($errors->any())
+                <div class="error-block">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+
+            @endif
+
             <form action="{{route('register')}}" method="post">
                 @csrf
                 <label>Name:
