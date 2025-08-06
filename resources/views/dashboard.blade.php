@@ -2,29 +2,7 @@
 
 @section('title', 'Dashboard')
 @section('content')
-    <header class="header">
-        <header class="topbar">
-            <div class="left">
-                <button id="burgerBtn" class="burger-btn">&#9776;</button>
-            </div>
-
-            <div class="right">
-                <span class="user-name">{{\Illuminate\Support\Facades\Auth::user()->name}}</span>
-                <form action="{{route('logout')}}" method="post" style="display:inline">
-                    @csrf
-                    <button class="logout-btn" title="Exit">X</button>
-                </form>
-            </div>
-        </header>
-
-        <nav id="navPanel" class="nav-panel">
-            <a href="/dashboard">Main</a>
-            <a href="#">Tasks</a>
-            <a href="#">In progress</a>
-            <a href="#">Completed</a>
-            <a href="#">Users</a>
-        </nav>
-    </header>
+    <h1 style="text-align: center">Dashboard</h1>
 
     <div class="dashboard-grid">
         <div class="stat-block last-tasks">
@@ -41,7 +19,7 @@
         </div>
 
         <div class="stat-block user-rating">
-            <h2>User rating</h2>
+            <h2>Managers rating</h2>
             <ol>
                 <li>Igor Donchenko — 34 tasks</li>
                 <li>Oleksiy Petrov — 28 tasks</li>

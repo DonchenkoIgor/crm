@@ -9,6 +9,8 @@
 </head>
 <body>
 <main class="container">
+    @include('components.header')
+
     @yield('content')
 </main>
 </body>
