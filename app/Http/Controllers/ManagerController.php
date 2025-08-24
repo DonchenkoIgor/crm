@@ -9,7 +9,7 @@ class ManagerController extends Controller
 {
     public function index()
     {
-        $managers = User::where('role', 'manager')->get();
+        $managers = User::whereIn('role', ['manager', 'admin'])->get();
         return view('managers.index', compact('managers'));
     }
 
@@ -21,39 +21,49 @@ class ManagerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'role' => 'manager',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+            'role' => 'required|string|in:admin,manager',
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role' => 'manager',
+            'role' => $request->role,
         ]);
 
         return redirect()->route('managers.index');
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $manager)
     {
-        $request->validate([
-            'name' => 'nullable',
-            'email' => 'nullable',
-            'password' => 'nullable',
-            'role' => 'nullable',
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $manager->id,
+            'password' => 'nullable|string|min:6',
+            'role' => 'required|string|in:admin,manager',
         ]);
 
-        $user->update();
+        $data = [
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'role' => $validated['role'],
+        ];
+
+        if (!empty($validated['password'])) {
+            $data['password'] = bcrypt($validated['password']);
+        }
+
+        $manager->update($data);
 
         return redirect()->route('managers.index');
     }
 
     public function destroy(User $manager)
     {
-        if ($manager->role !== 'manager'){
+        if ($manager->role !== 'manager') {
             abort(403);
         }
         $manager->delete();
