@@ -8,35 +8,33 @@
         <div class="stat-block last-tasks">
             <h2>Last completed tasks</h2>
             <ul>
-                <li>Task 1 - 01.08.2025 12:30</li>
-                <li>Task 2 - 01.08.2025 12:33</li>
-                <li>Task 3 - 01.08.2025 12:34</li>
-                <li>Task 4 - 01.08.2025 12:55</li>
-                <li>Task 5 - 01.08.2025 12:44</li>
-                <li>Task 6 - 01.08.2025 12:43</li>
-                <li>Task 7 - 01.08.2025 12:32</li>
+                @if(isset($lastCompletedTasks) && $lastCompletedTasks->count())
+                    @foreach($lastCompletedTasks as $task)
+                        <li>{{$task->name}} - {{$task->updated_at->format('d.m.Y H:i')}}
+                            ({{$task->user->name}})
+                        </li>
+                    @endforeach
+                @else
+                    <li>No completed tasks yet</li>
+                @endif
             </ul>
         </div>
 
         <div class="stat-block user-rating">
             <h2>Managers rating</h2>
             <ol>
-                <li>Igor Donchenko — 34 tasks</li>
-                <li>Oleksiy Petrov — 28 tasks</li>
-                <li>Olga Ivanova — 22 tasks</li>
-                <li>Maryna Lis — 18 tasks</li>
-                <li>Sergiy Voronov — 16 tasks</li>
+                @foreach($managersRating as $user)
+                    <li>{{$user->name}} — {{$user->completed_tasks_count}} tasks</li>
+                @endforeach
             </ol>
         </div>
 
         <div class="stat-block task-count">
             <h2>Number of tasks</h2>
             <ul>
-                <li>Igor Donchenko — 50 tasks</li>
-                <li>Oleksiy Petrov — 35 tasks</li>
-                <li>Olga Ivanova — 30 tasks</li>
-                <li>Maryna Lis — 25 tasks</li>
-                <li>Sergiy Voronov — 20 tasks</li>
+                @foreach($tasksCount as $user)
+                    <li>{{$user->name}} — {{$user->tasks_count}}</li>
+                @endforeach
             </ul>
         </div>
     </div>

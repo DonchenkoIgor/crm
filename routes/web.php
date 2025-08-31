@@ -22,6 +22,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->prefix('dashboard')->group(function () {
    Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+   Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index'])->name('tasks.index');
+   Route::delete('/tasks/{task}', [\App\Http\Controllers\TaskController::class, 'destroy'])->name('tasks.destroy');
+   Route::patch('/tasks/{task}', [\App\Http\Controllers\TaskController::class, 'update'])->name('tasks.update');
+   Route::post('/tasks', [\App\Http\Controllers\TaskController::class, 'store'])->name('tasks.store');
 
    Route::middleware('can:manage-managers')->group(function () {
        Route::get('/managers', [\App\Http\Controllers\ManagerController::class, 'index'])->name('managers.index');
@@ -30,6 +34,5 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
        Route::delete('/managers/{manager}', [\App\Http\Controllers\ManagerController::class, 'destroy'])->name('managers.destroy');
        Route::patch('/managers/{manager}', [\App\Http\Controllers\ManagerController::class, 'update'])->name('managers.update');
    });
-
 
 });
