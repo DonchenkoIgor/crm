@@ -19,8 +19,8 @@
         <nav id="navPanel" class="nav-panel">
             <a href="/dashboard">Main</a>
             <a href="{{route('tasks.index')}}">Tasks</a>
-            <a href="#">In progress</a>
-            <a href="#">Completed</a>
+            <a href="{{route('tasks.open')}}">In progress</a>
+            <a href="{{route('tasks.completed')}}">Completed</a>
             @can('manage-managers')
                 <a href="{{route('managers.index')}}">Managers</a>
             @endcanany

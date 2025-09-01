@@ -35,4 +35,23 @@ class DashboardController extends Controller
         }
         return view('dashboard', compact('lastCompletedTasks', 'managersRating', 'tasksCount'));
     }
+
+    public function openTasks()
+    {
+        $tasks = Task::with('user')
+            ->where('status', 'open')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        return view ('tasks.open', compact('tasks'));
+    }
+
+    public function completedTasks()
+    {
+        $completedTasks = Task::with('user')
+            ->where('status', 'completed')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        return view ('tasks.completed', compact('completedTasks'));
+    }
 }
