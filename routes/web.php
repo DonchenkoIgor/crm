@@ -26,6 +26,8 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
    Route::delete('/tasks/{task}', [\App\Http\Controllers\TaskController::class, 'destroy'])->name('tasks.destroy');
    Route::patch('/tasks/{task}', [\App\Http\Controllers\TaskController::class, 'update'])->name('tasks.update');
    Route::post('/tasks', [\App\Http\Controllers\TaskController::class, 'store'])->name('tasks.store');
+   Route::get('/tasks/open', [\App\Http\Controllers\DashboardController::class, 'openTasks'])->name('tasks.open');
+   Route::get('/tasks/completed', [\App\Http\Controllers\DashboardController::class, 'completedTasks'])->name('tasks.completed');
 
    Route::middleware('can:manage-managers')->group(function () {
        Route::get('/managers', [\App\Http\Controllers\ManagerController::class, 'index'])->name('managers.index');
